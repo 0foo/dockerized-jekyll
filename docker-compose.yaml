@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+    app:
+        build:
+            context: .
+        volumes:
+            - .:/jekyll
+        ports:
+            - target: 4000
+              host_ip: 127.0.0.1
+              published: "4000"
+              protocol: tcp
+              mode: host
+        command:
+            - /bin/sh
+            - -c
+            - |
+              bundle install
+              bundle exec jekyll serve --livereload
